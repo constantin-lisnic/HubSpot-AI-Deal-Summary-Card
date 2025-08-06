@@ -41,12 +41,7 @@ exports.main = async (context = {}) => {
       method: "POST",
       body: JSON.stringify({
         message: "AI Deal Summary request from HubSpot",
-        timestamp: new Date().toISOString(),
         recordId: hs_object_id,
-        action: "generate_summary",
-        // Add a callback URL for when it's done
-        callbackUrl: `https://api.hubapi.com/crm/v3/objects/deals/${hs_object_id}`,
-        accessToken: process.env.PRIVATE_APP_ACCESS_TOKEN,
       }),
       headers: { "Content-Type": "application/json" },
     });
