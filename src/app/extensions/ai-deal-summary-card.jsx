@@ -31,7 +31,7 @@ const AiDealSummaryCard = () => {
     }, 1000);
 
     try {
-      const result = await hubspot.serverless("n8n-webhook", {
+      const result = await hubspot.serverless("ai-deal-summary-func", {
         propertiesToSend: ["hs_object_id"],
         parameters: {},
       });

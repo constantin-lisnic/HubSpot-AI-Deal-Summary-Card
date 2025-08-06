@@ -1,7 +1,7 @@
 {
-  "name": "Get started App",
-  "description": "This is an example private app that shows a custom card on the Contact record tab built with React-based frontend. This card demonstrates a simple handshake with HubSpot's serverless backend.",
-  "uid": "get_started_app",
+  "name": "AI Deal Summary",
+  "description": "This is an AI Deal Summary private app that shows a custom card on the Deal record tab built with React-based frontend. This card demonstrates a simple handshake with HubSpot's serverless backend.",
+  "uid": "ai_deal_summary_app",
   "scopes": [
     "crm.objects.contacts.read",
     "crm.objects.contacts.write",
