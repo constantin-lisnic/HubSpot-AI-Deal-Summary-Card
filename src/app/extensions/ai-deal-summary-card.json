@@ -1,0 +1,17 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "AI Deal Summary",
+    "description": "This is an AI Deal Summary card",
+    "uid": "ai_deal_summary_card",
+    "location": "crm.record.tab",
+    "module": {
+      "file": "ai-deal-summary-card.jsx"
+    },
+    "previewImage": {
+      "file": "assets/ai-deal-summary-card-preview.png",
+      "altText": "AI Deal Summary card UI extension, demonstrating a card with a title, description, and a button"
+    },
+    "objectTypes": [{ "name": "deals" }]
+  }
+}

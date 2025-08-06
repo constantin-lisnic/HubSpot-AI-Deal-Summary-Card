@@ -1,0 +1,8 @@
+{
+  "appFunctions": {
+    "ai-deal-summary-func": {
+      "file": "ai-deal-summary-func.js",
+      "secrets": []
+    }
+  }
+}
