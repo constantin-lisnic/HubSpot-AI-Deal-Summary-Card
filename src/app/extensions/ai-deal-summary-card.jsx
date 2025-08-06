@@ -19,6 +19,100 @@ const AiDealSummaryCard = () => {
   const [loadingSavedSummary, setLoadingSavedSummary] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Parse AI summary content
+  const parseAISummary = (content) => {
+    try {
+      // Try to parse as JSON first
+      const parsed = JSON.parse(content);
+      return parsed;
+    } catch (error) {
+      // If not JSON, return as plain text
+      return { content: content };
+    }
+  };
+
+  // Render structured AI summary
+  const renderAISummary = (content) => {
+    const parsed = parseAISummary(content);
+
+    // If it's not structured data, show as plain text
+    if (parsed.content) {
+      return <Text>{parsed.content}</Text>;
+    }
+
+    // Render structured sections
+    return (
+      <Flex direction="column" gap="medium">
+        {parsed.lead_introduction && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              👤 Lead Introduction
+            </Text>
+            <Text>{parsed.lead_introduction}</Text>
+          </Flex>
+        )}
+
+        {parsed.engagement_summary && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              📞 Engagement Summary
+            </Text>
+            <Text>{parsed.engagement_summary}</Text>
+          </Flex>
+        )}
+
+        {parsed.technical_needs && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              ⚙️ Technical Needs
+            </Text>
+            <Text>{parsed.technical_needs}</Text>
+          </Flex>
+        )}
+
+        {parsed.current_deal_status && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              📊 Current Deal Status
+            </Text>
+            <Text>{parsed.current_deal_status}</Text>
+          </Flex>
+        )}
+
+        {parsed.open_sales_actions && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              🎯 Recommended Actions
+            </Text>
+            <Text style={{ whiteSpace: "pre-line" }}>
+              {parsed.open_sales_actions}
+            </Text>
+          </Flex>
+        )}
+
+        {parsed.key_dates_timeline && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              📅 Key Timeline
+            </Text>
+            <Text style={{ whiteSpace: "pre-line" }}>
+              {parsed.key_dates_timeline}
+            </Text>
+          </Flex>
+        )}
+
+        {parsed.tldr && (
+          <Flex direction="column" gap="small">
+            <Text format={{ fontWeight: "bold", fontSize: "medium" }}>
+              ⚡ TL;DR
+            </Text>
+            <Text format={{ fontStyle: "italic" }}>{parsed.tldr}</Text>
+          </Flex>
+        )}
+      </Flex>
+    );
+  };
+
   // Load existing AI summary by calling serverless function to get properties
   useEffect(() => {
     const loadSavedSummary = async () => {
@@ -204,7 +298,7 @@ const AiDealSummaryCard = () => {
             </Text>
           </Flex>
 
-          <Text>{savedSummary.content}</Text>
+          {renderAISummary(savedSummary.content)}
 
           <Divider />
         </Flex>
